@@ -1,35 +1,23 @@
 import React from 'react'
 import PostHeade from './post-heade'
-const Dummy_Post=[
-    {
-      slug:'getting-started-with-nextjs'
-      ,title:'Get started Next,js'
-      ,image:'next.js-Learning.png'
-      ,content:'NextJS is a The React framwork for production -it make building fullstack React apps and sites a breez and ships with built-in Server side Rendering',
-    date:'2021-02-10'
-  },
-  {
-    slug:'getting-started-with-nextjs 2'
-    ,title:'Get started Next,js'
-    ,image:'next.js-Learning.png'
-    ,content:'#NextJS is a The React framwork for production -it make building fullstack React apps and sites a breez and ships with built-in Server side Rendering',
-  date:'2021-02-10'
-  },
-  {
-    slug:'getting-started-with-nextjs 3'
-    ,title:'Get started Next,js'
-    ,image:'next.js-Learning.png'
-    ,content:'#NextJS is a The React framwork for production -it make building fullstack React apps and sites a breez and ships with built-in Server side Rendering',
-  date:'2021-02-10'
-  }
-  ]
+import Styless from './post-content.module.css'
+import ReactMarkdown from 'react-markdown'
+import Image from 'next/image'
 
-function PostContent() {
-    const imagepath=`/image/posts/${Dummy_Post.slug}/${Dummy_Post.image}`
+function PostContent(props) {
+  const{post}=props; 
+    const imagepath=`/image/posts/${post.slug}/${post.image}`
+    const CustomRender={
+      image(image){
+        return (
+        <Image src={`/image/posts/${post.slug}/${image.src}`} alt={image.alt} width={600} height={300}/>
+        )
+      }
+    }
     return (
-        <article>
-            <PostHeade title={Dummy_Post.title} image={imagepath}/>
-            {Dummy_Post.content}
+        <article className={Styless.content}>
+            <PostHeade title={post.title} image={imagepath}/>
+          <ReactMarkdown renderers={CustomRender}>{post.content}</ReactMarkdown>
         </article>
     )
 }

@@ -8,3 +8,6 @@
     border-radius: 6px;
     padding: var(--size-4);
   }
+  .content img{
+    max-width: 200px;
+  }
