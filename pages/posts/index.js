@@ -13,7 +13,8 @@ export function getStaticProps(){
   return{
    props:{
      posts:allPosts
-   }
+   },
+   revalidate:60
   }
 } 
 export default AllPostsPage
